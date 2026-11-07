@@ -1,0 +1,574 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOFRA | Indian Food Experience</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#f7f0e5;color:#30251e;font-family:'DM Sans',sans-serif}
+:root{--cream:#f7f0e5;--brown:#44291e;--gold:#bd8b43;--maroon:#702b25;--saffron:#df8b32}
+h1,h2,h3{font-family:'Playfair Display',serif}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:inherit}
+
+nav{
+display:flex;justify-content:space-between;align-items:center;
+padding:20px 7%;background:var(--cream);
+position:sticky;top:0;z-index:100;
+}
+.logo{font-family:'Playfair Display';font-size:34px;letter-spacing:5px;color:var(--maroon);font-weight:bold}
+.nav-links{display:flex;align-items:center;gap:30px;font-size:12px;letter-spacing:1px}
+.nav-links a:hover{color:var(--saffron)}
+.reserve{background:var(--maroon);color:white;padding:13px 22px;border:0}
+
+.hero{
+min-height:690px;
+background:linear-gradient(90deg,rgba(30,15,10,.8),rgba(30,15,10,.12)),
+url('https://images.unsplash.com/photo-1563379091339-03246963d96c?w=1800') center/cover;
+display:flex;align-items:center;padding:8%;color:white;
+}
+.hero-content{max-width:700px}
+.hero small{color:#f4c67e;letter-spacing:5px}
+.hero h1{font-size:clamp(55px,8vw,105px);line-height:1.05;margin:25px 0}
+.hero p{font-size:17px;line-height:1.9;max-width:500px;color:#eee}
+.hero button{margin-top:30px;padding:17px 35px;background:var(--saffron);border:0;color:#28160b;font-weight:bold}
+
+.biryani-feature{padding:85px 7%;background:#efe3d1}
+.biryani-feature .feature-layout{display:grid;grid-template-columns:1.05fr 1fr;gap:45px;align-items:center;max-width:1250px;margin:auto}
+.biryani-feature img{width:100%;height:460px;object-fit:cover;box-shadow:18px 18px 0 #d3b98f}
+.biryani-feature h2{font-size:clamp(38px,5vw,58px);margin:18px 0}
+.biryani-feature p{line-height:1.9;color:#716357}
+.biryani-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+.biryani-tag{padding:14px 16px;background:#fff8ed;border-left:3px solid var(--saffron);font-weight:600;color:var(--brown)}
+.intro{text-align:center;padding:110px 10%}
+.label{color:var(--gold);letter-spacing:4px;font-size:12px;font-weight:bold}
+.intro h2,.heading h2{font-size:clamp(38px,5vw,58px);margin:20px 0}
+.intro p{max-width:750px;margin:auto;line-height:1.9;color:#776b60}
+
+.heading{text-align:center;margin-bottom:45px}
+.states{padding:60px 7% 100px}
+.state-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.state-card{height:390px;position:relative;overflow:hidden}
+.state-card img{width:100%;height:100%;object-fit:cover;transition:.6s}
+.state-card:hover img{transform:scale(1.09)}
+.state-info{position:absolute;bottom:0;left:0;right:0;padding:30px;color:white;background:linear-gradient(transparent,rgba(0,0,0,.9))}
+.state-info h3{font-size:28px}
+.state-info p{font-size:13px;margin-top:8px}
+
+.story{display:grid;grid-template-columns:1fr 1fr;background:#e8dcc9}
+.story img{width:100%;height:100%;min-height:480px;object-fit:cover}
+.story-content{padding:100px 12%;display:flex;flex-direction:column;justify-content:center}
+.story-content h2{font-size:48px;margin:20px 0}
+.story-content p{line-height:2;color:#716357}
+
+.menu{padding:100px 10%;text-align:center}
+.menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:35px 65px;text-align:left;margin-top:45px}
+.menu-item{display:flex;justify-content:space-between;gap:15px;border-bottom:1px solid #c9bca9;padding:20px 0}
+.menu-item h3{font-size:22px}
+.menu-item p{font-size:13px;color:#81766b;margin-top:7px}
+.price{color:var(--maroon);font-weight:bold;white-space:nowrap}
+.menu-item button{display:block;background:var(--maroon);color:white;border:0;padding:8px 15px;margin-top:10px}
+.menu-item.biryani-item{background:#fff9f0;padding:20px;border:1px solid #e2d2bc}
+
+.experience{
+padding:100px 7%;background:#43281d;color:white;text-align:center;
+}
+.experience h2{font-size:48px;margin:20px 0}
+.experience p{max-width:700px;margin:auto;line-height:1.9;color:#ddd}
+
+.reservation{
+padding:100px 20px;text-align:center;color:white;
+background:linear-gradient(rgba(40,20,10,.83),rgba(40,20,10,.83)),
+url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600') center/cover;
+}
+.reservation h2{font-size:52px;margin:20px 0}
+.reservation p{margin-bottom:30px;color:#ddd}
+.reservation form{max-width:750px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.reservation input,.reservation select{width:100%;min-width:0;padding:17px;border:1px solid var(--gold);background:#fff;color:#30251e}
+.reservation button{grid-column:span 2;padding:18px;background:var(--saffron);border:0;font-weight:bold}
+#message{margin-top:20px;color:#f4d08c}
+
+footer{background:#241913;color:white;text-align:center;padding:65px 8%}
+footer .logo{color:#e8b76f}
+footer p{color:#aaa;line-height:2;margin-top:20px}
+footer .social{color:#e8b76f;margin-top:25px}
+
+.cart{
+position:fixed;right:20px;bottom:20px;z-index:150;
+background:var(--maroon);color:white;padding:16px 22px;
+border-radius:50px;border:0;box-shadow:0 5px 20px #0003;
+}
+#cart-count{font-weight:bold}
+
+.reveal{opacity:0;transform:translateY(30px);transition:.8s}
+.reveal.show{opacity:1;transform:translateY(0)}
+
+
+
+.hero-chef-card{
+  display:flex;align-items:center;gap:13px;margin-top:24px;
+  width:max-content;max-width:100%;padding:9px 17px 9px 9px;
+  border:1px solid #e8b76f;border-radius:60px;
+  background:rgba(38,19,12,.72);backdrop-filter:blur(6px);
+  color:white;box-shadow:0 8px 24px #0003;
+}
+.hero-chef-card img{width:58px;height:58px;object-fit:cover;object-position:center 25%;border-radius:50%;border:2px solid #e8b76f}
+.hero-chef-card strong{display:block;font-family:'Playfair Display',serif;font-size:18px}
+.hero-chef-card span{display:block;color:#f4d08c;font-size:11px;margin-top:3px;letter-spacing:.5px}
+.chef-avatar{width:38px;height:38px;object-fit:cover;object-position:center 25%;border-radius:50%;border:2px solid #e8b76f;vertical-align:middle}
+
+/* SOFRA Chef AI chat */
+.chef-launcher{
+  position:fixed;right:22px;bottom:88px;z-index:210;
+  display:flex;align-items:center;gap:10px;
+  border:0;border-radius:999px;padding:13px 18px;
+  background:#702b25;color:#fff;font-weight:700;
+  box-shadow:0 8px 28px #24191335;
+}
+.chef-launcher .chef-icon{font-size:22px}
+.chef-panel{
+  position:fixed;right:22px;bottom:145px;z-index:220;
+  width:min(370px,calc(100vw - 28px));height:510px;max-height:calc(100vh - 175px);
+  display:none;flex-direction:column;overflow:hidden;
+  background:#fffaf2;border:1px solid #d8c5a8;border-radius:18px;
+  box-shadow:0 18px 55px #24191340;
+}
+.chef-panel.open{display:flex}
+.chef-header{
+  padding:17px 18px;background:#44291e;color:#fff;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.chef-header strong{font-family:'Playfair Display',serif;font-size:22px;letter-spacing:1px}
+.chef-header small{display:block;color:#e8c99b;margin-top:3px;font-size:11px}
+.chef-close{border:0;background:transparent;color:#fff;font-size:25px}
+.chef-messages{padding:16px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:12px}
+.chef-message{max-width:88%;padding:11px 13px;border-radius:13px;font-size:13px;line-height:1.55;white-space:pre-wrap}
+.chef-message.bot{align-self:flex-start;background:#efe3d1;color:#39271d;border-bottom-left-radius:3px}
+.chef-message.user{align-self:flex-end;background:#702b25;color:white;border-bottom-right-radius:3px}
+.chef-suggestions{display:flex;flex-wrap:wrap;gap:7px;padding:0 14px 12px}
+.chef-suggestions button{border:1px solid #c9a875;background:#fff8ed;color:#63372a;border-radius:20px;padding:7px 10px;font-size:11px}
+.chef-form{display:flex;gap:8px;padding:12px;border-top:1px solid #e4d7c5}
+.chef-form input{min-width:0;flex:1;padding:12px;border:1px solid #d8c5a8;border-radius:9px;background:white;color:#30251e}
+.chef-form button{border:0;border-radius:9px;background:#df8b32;color:#28160b;padding:0 15px;font-weight:bold}
+.chef-note{font-size:10px;color:#8a7b6b;text-align:center;padding:0 12px 10px}
+
+@media(max-width:800px){
+ .hero-chef-card{margin-top:18px}
+ .hero-chef-card img{width:50px;height:50px}
+.nav-links{gap:12px;font-size:10px}
+.state-grid{grid-template-columns:1fr 1fr}
+.story{grid-template-columns:1fr}
+.story img{min-height:300px}
+.menu-grid{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+nav{padding:15px}
+.logo{font-size:24px}
+.nav-links a:not(.reserve){display:none}
+.hero{min-height:570px}
+.state-grid{grid-template-columns:1fr}
+.state-card{height:320px}
+.reservation form{grid-template-columns:1fr}
+.reservation button{grid-column:span 1}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<div class="logo">SOFRA</div>
+<div class="nav-links">
+<a href="#home">HOME</a>
+<a href="#story">OUR STORY</a>
+<a href="#states">EXPLORE INDIA</a>
+<a href="#menu">MENU</a>
+<a class="reserve" href="#reservation">RESERVE</a>
+</div>
+</nav>
+
+<section class="hero" id="home">
+<div class="hero-content">
+<small>ONE NATION. COUNTLESS FLAVOURS.</small>
+<h1>A Journey<br>Through India.</h1>
+<p>Discover the magic of Indian cuisine. From royal kitchens to vibrant street food, experience the flavours, traditions and stories of India.</p>
+<button onclick="document.getElementById('states').scrollIntoView()">EXPLORE INDIA →</button>
+      <div class="hero-chef-card">
+        <img src="chef-avatar.jpg" alt="SOFRA AI robot chef">
+        <div><strong>Meet SOFRA Chef</strong><span>Your AI food companion</span></div>
+      </div>
+</div>
+</section>
+
+<section class="biryani-feature reveal" id="biryanis">
+  <div class="feature-layout">
+    <img src="https://images.unsplash.com/photo-1563379091339-03246963d96c?w=1200"
+         alt="Aromatic Indian chicken biryani served with spices">
+    <div>
+      <span class="label">SOFRA'S SPECIAL</span>
+      <h2>India's Love Affair With Biryani.</h2>
+      <p>Fragrant basmati rice, slow-cooked spices and layers of flavour. Explore India's iconic biryanis, from the royal dum biryani of Hyderabad to the delicate Awadhi style of Lucknow.</p>
+      <div class="biryani-list">
+        <div class="biryani-tag">Hyderabadi Chicken Biryani</div>
+        <div class="biryani-tag">Lucknowi Awadhi Biryani</div>
+        <div class="biryani-tag">Kolkata Biryani</div>
+        <div class="biryani-tag">Vegetable Dum Biryani</div>
+      </div>
+      <button onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})"
+        style="margin-top:25px;padding:15px 25px;background:var(--maroon);color:white;border:0">
+        EXPLORE BIRYANI MENU →
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="intro reveal" id="story">
+<span class="label">OUR PHILOSOPHY</span>
+<h2>India Lives On Every Plate.</h2>
+<p>Every Indian region has a unique culinary identity. At SOFRA, we celebrate the recipes, ingredients and traditions that connect generations. Discover the diversity of India through its incredible food.</p>
+</section>
+
+<section class="states" id="states">
+<div class="heading reveal">
+<span class="label">EXPLORE REGIONAL CUISINES</span>
+<h2>A Taste From Every Corner.</h2>
+</div>
+
+<div class="state-grid">
+
+<div class="state-card">
+<img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=700" alt="Punjabi food">
+<div class="state-info"><h3>Punjab</h3><p>Butter Chicken · Amritsari Kulcha · Sarson Ka Saag</p></div>
+</div>
+
+<div class="state-card">
+<img src="https://images.unsplash.com/photo-1567337710282-00832b415979?w=700" alt="Assamese cuisine">
+<div class="state-info"><h3>Assam</h3><p>Masor Tenga · Khar · Aloo Pitika</p></div>
+</div>
+
+<div class="state-card">
+<img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=700" alt="South Indian food">
+<div class="state-info"><h3>South India</h3><p>Masala Dosa · Idli · Sambar</p></div>
+</div>
+
+<div class="state-card">
+<img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=700" alt="Rajasthani food">
+<div class="state-info"><h3>Rajasthan</h3><p>Dal Baati Churma · Gatte Ki Sabzi</p></div>
+</div>
+
+<div class="state-card">
+<img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=700" alt="Bengali food">
+<div class="state-info"><h3>Bengal</h3><p>Kosha Mangsho · Mishti Doi · Fish Curry</p></div>
+</div>
+
+<div class="state-card">
+<img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=700" alt="Gujarati food">
+<div class="state-info"><h3>Gujarat</h3><p>Dhokla · Thepla · Gujarati Thali</p></div>
+</div>
+
+</div>
+</section>
+
+<section class="story reveal">
+<img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=1000" alt="Indian cuisine">
+<div class="story-content">
+<span class="label">THE SOFRA EXPERIENCE</span>
+<h2>More Than Food. It's Culture.</h2>
+<p>Indian cuisine is a beautiful expression of heritage. Spices, family recipes, traditional cooking methods and local ingredients create a food experience unlike anywhere else in the world. Come hungry. Leave with memories.</p>
+</div>
+</section>
+
+<section class="menu reveal" id="menu">
+<span class="label">A CELEBRATION OF FLAVOURS</span>
+<h2>Our Signature Menu.</h2>
+
+<div class="menu-grid">
+
+<div class="menu-item biryani-item">
+  <div><h3>Hyderabadi Chicken Dum Biryani</h3><p>Classic dum-cooked basmati rice, aromatic spices and tender chicken.</p>
+  <button onclick="addToCart('Hyderabadi Chicken Dum Biryani',380)">ADD TO CART</button></div>
+  <span class="price">₹380</span>
+</div>
+
+<div class="menu-item biryani-item">
+  <div><h3>Lucknowi Awadhi Biryani</h3><p>Delicate, fragrant and slow-cooked in traditional Awadhi style.</p>
+  <button onclick="addToCart('Lucknowi Awadhi Biryani',360)">ADD TO CART</button></div>
+  <span class="price">₹360</span>
+</div>
+
+<div class="menu-item biryani-item">
+  <div><h3>Kolkata Chicken Biryani</h3><p>Lightly spiced biryani with potato, egg and fragrant rice.</p>
+  <button onclick="addToCart('Kolkata Chicken Biryani',350)">ADD TO CART</button></div>
+  <span class="price">₹350</span>
+</div>
+
+<div class="menu-item biryani-item">
+  <div><h3>Vegetable Dum Biryani</h3><p>Seasonal vegetables layered with basmati rice and whole spices.</p>
+  <button onclick="addToCart('Vegetable Dum Biryani',280)">ADD TO CART</button></div>
+  <span class="price">₹280</span>
+</div>
+
+<div class="menu-item">
+<div><h3>Butter Chicken</h3><p>Rich tomato gravy with tender chicken.</p>
+<button onclick="addToCart('Butter Chicken',320)">ADD TO CART</button></div>
+<span class="price">₹320</span>
+</div>
+
+<div class="menu-item">
+<div><h3>Shahi Paneer</h3><p>Creamy royal paneer curry.</p>
+<button onclick="addToCart('Shahi Paneer',260)">ADD TO CART</button></div>
+<span class="price">₹260</span>
+</div>
+
+<div class="menu-item">
+<div><h3>Masala Dosa</h3><p>Crispy dosa with potato filling.</p>
+<button onclick="addToCart('Masala Dosa',140)">ADD TO CART</button></div>
+<span class="price">₹140</span>
+</div>
+
+<div class="menu-item">
+<div><h3>Amritsari Kulcha</h3><p>Stuffed Punjabi bread with chole.</p>
+<button onclick="addToCart('Amritsari Kulcha',180)">ADD TO CART</button></div>
+<span class="price">₹180</span>
+</div>
+
+<div class="menu-item">
+<div><h3>Masor Tenga</h3><p>Traditional Assamese sour fish curry.</p>
+<button onclick="addToCart('Masor Tenga',280)">ADD TO CART</button></div>
+<span class="price">₹280</span>
+</div>
+
+<div class="menu-item">
+<div><h3>Dal Baati Churma</h3><p>Traditional Rajasthani combination.</p>
+<button onclick="addToCart('Dal Baati Churma',240)">ADD TO CART</button></div>
+<span class="price">₹240</span>
+</div>
+
+<div class="menu-item">
+<div><h3>Gulab Jamun</h3><p>Soft milk dumplings in sugar syrup.</p>
+<button onclick="addToCart('Gulab Jamun',100)">ADD TO CART</button></div>
+<span class="price">₹100</span>
+</div>
+
+<div class="menu-item">
+<div><h3>Mango Lassi</h3><p>Refreshing creamy mango drink.</p>
+<button onclick="addToCart('Mango Lassi',120)">ADD TO CART</button></div>
+<span class="price">₹120</span>
+</div>
+
+</div>
+</section>
+
+<section class="experience">
+<span class="label">A TABLE FOR EVERYONE</span>
+<h2>One India. Many Flavours.</h2>
+<p>From the Himalayas to the Indian Ocean, every dish has a story. Celebrate the diversity of India with SOFRA.</p>
+</section>
+
+<section class="reservation" id="reservation">
+<span class="label">JOIN OUR TABLE</span>
+<h2>Reserve Your Experience.</h2>
+<p>Good food tastes better when shared.</p>
+
+<form id="booking-form">
+<input type="text" id="name" placeholder="Full Name" required>
+<input type="email" placeholder="Email Address" required>
+<input type="date" id="date" required>
+<select required>
+<option value="">Select Time</option>
+<option>09:00 AM</option>
+<option>11:00 AM</option>
+<option>01:00 PM</option>
+<option>03:00 PM</option>
+<option>07:00 PM</option>
+<option>09:00 PM</option>
+</select>
+<select required>
+<option value="">Number of Guests</option>
+<option>1 Person</option>
+<option>2 People</option>
+<option>3 People</option>
+<option>4 People</option>
+<option>5 People</option>
+<option>6 People</option>
+</select>
+<input type="tel" placeholder="Phone Number" required>
+<button type="submit">CONFIRM RESERVATION →</button>
+</form>
+<div id="message" aria-live="polite"></div>
+</section>
+
+<footer>
+<div class="logo">SOFRA</div>
+<p>A Journey Through Indian Flavours.<br>One Nation. Countless Flavours. One Table.</p>
+<div class="social">INSTAGRAM | FACEBOOK | CONTACT</div>
+<p style="font-size:12px;margin-top:35px">© 2026 SOFRA. All Rights Reserved.</p>
+</footer>
+
+
+<button class="chef-launcher" id="chef-launcher" type="button" aria-label="Open SOFRA Chef">
+  <img class="chef-avatar" src="chef-avatar.jpg" alt="SOFRA AI robot chef"><span>Ask SOFRA Chef</span>
+</button>
+
+<section class="chef-panel" id="chef-panel" aria-label="SOFRA Chef chat">
+  <div class="chef-header">
+    <div style="display:flex;align-items:center;gap:10px"><img class="chef-avatar" src="chef-avatar.jpg" alt="SOFRA AI robot chef"><div><strong>SOFRA Chef</strong><small>Your AI food companion · Taste of India</small></div></div>
+    <button class="chef-close" id="chef-close" type="button" aria-label="Close chat">×</button>
+  </div>
+  <div class="chef-messages" id="chef-messages" aria-live="polite">
+    <div class="chef-message bot">Namaste! 🙏 Welcome to SOFRA. I'm your SOFRA Chef. Looking for biryani, a regional favourite, or something delicious within your budget? Ask me anything!</div>
+  </div>
+  <div class="chef-suggestions">
+    <button type="button" data-prompt="Suggest a biryani for me">Biryani picks 🍛</button>
+    <button type="button" data-prompt="I am vegetarian. What should I order?">Vegetarian 🌱</button>
+    <button type="button" data-prompt="Suggest a meal under ₹300">Under ₹300</button>
+  </div>
+  <form class="chef-form" id="chef-form">
+    <input id="chef-input" type="text" placeholder="Ask about dishes, spice or prices..." autocomplete="off" required>
+    <button type="submit">SEND</button>
+  </form>
+  <div class="chef-note">Demo assistant. Connect an API for live AI responses.</div>
+</section>
+
+<button class="cart" onclick="showCart()">🛒 CART (<span id="cart-count">0</span>)</button>
+
+<script>
+let cart=[];
+
+function addToCart(name,price){
+cart.push({name,price});
+document.getElementById('cart-count').textContent=cart.length;
+alert(name+' added to your cart!');
+}
+
+function showCart(){
+if(cart.length===0){
+alert('Your cart is empty.');
+return;
+}
+let total=cart.reduce((sum,item)=>sum+item.price,0);
+let items=cart.map(item=>item.name+' - ₹'+item.price).join('\n');
+alert('YOUR SOFRA CART\n\n'+items+'\n\nTotal: ₹'+total);
+}
+
+
+// SOFRA Chef: local demo responses. The /api/chat route can be enabled
+// with the included Node.js backend for real AI-powered conversations.
+const chefPanel = document.getElementById('chef-panel');
+const chefMessages = document.getElementById('chef-messages');
+const chefInput = document.getElementById('chef-input');
+
+document.getElementById('chef-launcher').addEventListener('click', () => {
+  chefPanel.classList.toggle('open');
+  if (chefPanel.classList.contains('open')) chefInput.focus();
+});
+document.getElementById('chef-close').addEventListener('click', () => chefPanel.classList.remove('open'));
+
+function chefAddMessage(text, type) {
+  const message = document.createElement('div');
+  message.className = 'chef-message ' + type;
+  message.textContent = text;
+  chefMessages.appendChild(message);
+  chefMessages.scrollTop = chefMessages.scrollHeight;
+}
+function chefLocalReply(question) {
+  const q = question.toLowerCase();
+  if (q.includes('biryani')) {
+    return 'A delicious choice! 🍛 Here are our biryani favourites:\\n• Hyderabadi Chicken Dum Biryani — ₹380\\n• Lucknowi Awadhi Biryani — ₹360\\n• Kolkata Chicken Biryani — ₹350\\n• Vegetable Dum Biryani — ₹280\\n\\nFor a rich, spicy flavour, try Hyderabadi. For a vegetarian option, choose Vegetable Dum Biryani.';
+  }
+  if (q.includes('vegetarian') || q.includes('veg') || q.includes('paneer')) {
+    return 'Of course! 🌱 Try Shahi Paneer (₹260), Masala Dosa (₹140), Vegetable Dum Biryani (₹280), or Dal Baati Churma (₹240). Would you like something mild or spicy?';
+  }
+  if (q.includes('300') || q.includes('budget') || q.includes('cheap') || q.includes('under')) {
+    return 'Here are tasty choices under ₹300: Masala Dosa ₹140, Shahi Paneer ₹260, Vegetable Dum Biryani ₹280, Masor Tenga ₹280, Dal Baati Churma ₹240, Gulab Jamun ₹100 and Mango Lassi ₹120.';
+  }
+  if (q.includes('assam') || q.includes('north east') || q.includes('northeast')) {
+    return 'For a taste of Assam, try Masor Tenga (₹280), a traditional tangy fish curry, or explore Khar and Aloo Pitika. SOFRA celebrates flavours from across the North East too!';
+  }
+  if (q.includes('spicy') || q.includes('hot')) {
+    return 'If you enjoy bold flavours, I recommend Hyderabadi Chicken Dum Biryani, Butter Chicken or a spicy regional curry. Tell me if you prefer chicken, fish or vegetarian food.';
+  }
+  if (q.includes('price') || q.includes('menu') || q.includes('dish')) {
+    return 'Our signature menu includes Butter Chicken ₹320, Shahi Paneer ₹260, Masala Dosa ₹140, Amritsari Kulcha ₹180, Masor Tenga ₹280, and biryanis from ₹280. Ask me for a vegetarian, spicy or budget-friendly recommendation!';
+  }
+  if (q.includes('hello') || q.includes('hi') || q.includes('namaste')) {
+    return 'Namaste! 🙏 Welcome to SOFRA. Tell me what you enjoy — biryani, vegetarian dishes, spicy food or regional Indian flavours — and I’ll help you choose.';
+  }
+  return 'I can help you explore SOFRA’s menu, biryanis, vegetarian dishes, regional Indian food and prices. Try asking “Which biryani is best?” or “Suggest a meal under ₹300.”';
+}
+async function chefGetReply(question) {
+  // If the optional backend is running and configured, use the real AI endpoint.
+  try {
+    const response = await fetch('/api/chat', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({message: question})
+    });
+    if (response.ok) {
+      const data = await response.json();
+      if (data.reply) return data.reply;
+    }
+  } catch (error) {
+    // Static hosting / offline mode: continue with the built-in demo replies.
+  }
+  return chefLocalReply(question);
+}
+document.getElementById('chef-form').addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const question = chefInput.value.trim();
+  if (!question) return;
+  chefAddMessage(question, 'user');
+  chefInput.value = '';
+  const pending = document.createElement('div');
+  pending.className = 'chef-message bot';
+  pending.textContent = 'One moment, let me help you...';
+  chefMessages.appendChild(pending);
+  chefMessages.scrollTop = chefMessages.scrollHeight;
+  const reply = await chefGetReply(question);
+  pending.textContent = reply;
+  chefMessages.scrollTop = chefMessages.scrollHeight;
+});
+document.querySelectorAll('.chef-suggestions button').forEach(button => {
+  button.addEventListener('click', () => {
+    chefInput.value = button.dataset.prompt;
+    document.getElementById('chef-form').requestSubmit();
+  });
+});
+
+
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting)entry.target.classList.add('show');
+});
+},{threshold:0.15});
+
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+const dateInput=document.getElementById('date');
+dateInput.min=new Date().toLocaleDateString('en-CA');
+
+document.getElementById('booking-form').addEventListener('submit',function(e){
+e.preventDefault();
+
+if(dateInput.value<dateInput.min){
+document.getElementById('message').textContent='Please select a future date.';
+return;
+}
+
+document.getElementById('message').textContent=
+'Thank you, '+document.getElementById('name').value+
+'! Your reservation request has been received.';
+
+this.reset();
+});
+</script>
+
+</body>
+</html>
+```
